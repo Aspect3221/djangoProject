@@ -1,7 +1,7 @@
 from django import forms
 from django.core.exceptions import ValidationError
 
-from frontend.validators import validateCreditCard
+from frontend.functions import validateCreditCard
 
 
 class CreditCardForm(forms.Form):

@@ -5,8 +5,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.template import loader
 
-from frontend.forms import CreditCardForm
-from frontend.validators import validateCreditCard
+
+from frontend.functions import validateCreditCard, calculateError
 
 
 def index(request):
@@ -22,4 +22,17 @@ def task1(request):
             return redirect("task1")
         else:
             messages.error(request, "Wrong")
-            return  redirect("task1")
+            return redirect("task1")
+
+
+def task2(request):
+    if request.method == "GET":
+        print('hi')
+        return render(request, "task2.html")
+    elif request.method == "POST":
+        bitInput = request.POST.get("bitInput")
+        if bitInput is not None:
+            hammingCode = calculateError(bitInput)
+            return render(request, "task2.html", {'hammingCode': hammingCode})
+
+
