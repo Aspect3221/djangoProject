@@ -54,8 +54,8 @@ def task4(request):
         toEncrypt = request.POST.get("to_encrypt")
 
         encryptedInput, key, cipherText = encrypt(plainMessage, toEncrypt)
-        decryptedMessage = decrypt(encryptedInput, key)
+        decryptedMessage, plainMessage = decrypt(key, cipherText)
 
         return render(request, "task4.html",
                       {'key': key, 'encryptedMessage': encryptedInput, 'decryptedMessage': decryptedMessage,
-                       'cipherText': cipherText})
+                       'cipherText': cipherText, 'plainMessage': plainMessage})

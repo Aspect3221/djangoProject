@@ -50,11 +50,11 @@ def calculateError(input):
     if not is_binary(input):
         return "Input is not in binary format. Please provide a binary input."
 
+    # Create a list of the parity bits
     input = [int(bit) for bit in input]
     input.reverse()
     parity1, parity2, parity4 = getParity(input)
 
-    # Create a list of the parity bits
 
     # index[2]= d3 index[4] = d5 index[5] = d6 index[6] = d7
 
@@ -143,15 +143,23 @@ def encrypt(plainMessage, toEncrypt):
     encryptedInput = [convertedInput[i] ^ key[i] for i in range(len(convertedInput))]
 
     # add the plain message to the encrypted message
-    ciphertext = plainMessage + ''.join(chr(i) for i in encryptedInput)
+    ciphertext = plainMessage +'_'+ ''.join(chr(i) for i in encryptedInput)
 
     return encryptedInput, key, ciphertext
 
 
-def decrypt(encryptedInput, key):
+def decrypt(key, ciphertext):
+
+    #Split cipher text
+    parts = ciphertext.split('_')
+    # Extract the encrypted input from the second part
+    encryptedInput = [ord(char) for char in parts[1]]
     # perform xor with key to decrypt
     decryptedInput = [encryptedInput[i] ^ key[i] for i in range(len(key))]
 
     # convert the message into string
     decryptedMessage = "".join(chr(value) for value in decryptedInput)
-    return decryptedMessage
+
+    #Extract the plain message from the first part
+    plainMessage = parts[0]
+    return decryptedMessage, plainMessage

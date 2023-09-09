@@ -8,20 +8,32 @@
         <h1 class="mb-6 text-3xl text-green-800">Text encryption app</h1>
         <a href="/" class="rounded-lg p-2.5 bg-red-400 self-center">Go back</a>
     </div>
-<div class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-row">
-<form method="post" action="task4">
-    {%csrf_token%}
-    <div class="mb-6 p-5">
-    <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Plain message</label>
+    <div class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-row">
+        <form method="post" action="task4">
+            {% csrf_token %}
+            <div class="mb-6 p-5">
+                <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Plain
+                    message</label>
 
-        <input type="text" id="input" name="plain_message" class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500" required>
-        <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Message to encrypt</label>
-        <input type="text" id="input2" name="to_encrypt" class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"  required>
-        <button class="bg-green-800 p-2 mt-5 hover:bg-green-600 rounded-lg text-white" type="submit">Encrypt</button>
-            <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Key used to encrypt: {{ key }}</span></p>
-        <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">CipherText: {{ cipherText }}</span></p>
-            <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Decrypted Secret message after using key for the cipher text: {{ decryptedMessage }}</span></p>
+                <input type="text" id="input" name="plain_message"
+                       class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
+                       required>
+                <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Message
+                    to encrypt</label>
+                <input type="text" id="input2" name="to_encrypt"
+                       class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
+                       required>
+                <button class="bg-green-800 p-2 mt-5 hover:bg-green-600 rounded-lg text-white" type="submit">Encrypt
+                </button>
+                <p class="alert alert-warning mt-3" role="alert"><span
+                        style="font-weight:bold">Key used to encrypt: {{ key }}</span></p>
+                <p class="alert alert-warning mt-3" role="alert"><span
+                        style="font-weight:bold">CipherText: {{ cipherText }}</span></p>
+                <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Extracted plain message: {{ plainMessage }}</span>
+                </p>
+                <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Decrypted Secret message: {{ decryptedMessage }}</span>
+                </p>
+            </div>
+        </form>
     </div>
-</form>
-</div>
 {% endblock content %}
