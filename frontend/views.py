@@ -21,7 +21,7 @@ def task1(request):
             messages.success(request, "Inputted Credit Card is correct")
             return redirect("task1")
         else:
-            messages.error(request, "Wrong")
+            messages.error(request, "Not a valid Credit Card")
             return redirect("task1")
 
 

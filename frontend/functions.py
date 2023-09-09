@@ -1,8 +1,10 @@
 def validateCreditCard(param):
+    if len(param) == 0:
+        return False
     # create a list of integers
     param = [int(num) for num in param]
 
-    # Pop the last number in the list as we will never multiple this number
+    # Pop the last number in the list as we will never multiply this number
     lastDigit = param.pop(-1)
 
     # Reverse the other numbers
@@ -34,10 +36,22 @@ def getParity(encodeInput):
     return parity1, parity2, parity4
 
 
+def is_binary(input_str):
+    for char in input_str:
+        if char != '0' and char != '1':
+            return False
+    return True
+
+
 def calculateError(input):
+    # Check whether passed input is in binary and is 7 bits
+    if len(input) < 7:
+        return "Input has fewer than 7 bits. Cannot perform Hamming code correction."
+    if not is_binary(input):
+        return "Input is not in binary format. Please provide a binary input."
+
     input = [int(bit) for bit in input]
     input.reverse()
-    print(input)
     parity1, parity2, parity4 = getParity(input)
 
     # Create a list of the parity bits
@@ -50,10 +64,12 @@ def calculateError(input):
     p2 = str(parity2 ^ input[2] ^ input[5] ^ input[6])
     # p3 = d5, d6, d7
     p4 = str(parity4 ^ input[4] ^ input[5] ^ input[6])
-    error = p1 + p2 + p4
+    error = p4 + p2 + p1
 
+    # Convert error from binary to decimal places
     error = int(error, 2)
 
+    # If error is greater than one
     if error > 0:
         index = error - 1
         if input[index] == 0:
@@ -97,7 +113,7 @@ def passwordCracker(input):
 
     # if dictionary attack doesnt work then try to crack 4 character passwords
     if foundPassword == "":
-        for password in itertools.product('abcdefghijklmnopqrstuvwxyz0123456789', repeat=4):
+        for password in itertools.product('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789', repeat=4):
             password = ''.join(password)
             hashedPassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
 
@@ -122,7 +138,7 @@ def encrypt(plainMessage, toEncrypt):
     encryptedInput = [convertedInput[i] ^ key[i] for i in range(len(convertedInput))]
 
     # add the plain message to the encrypted message
-    ciphertext = plainMessage + ''. join(chr(i) for i in encryptedInput)
+    ciphertext = plainMessage + ''.join(chr(i) for i in encryptedInput)
 
     return encryptedInput, key, ciphertext
 

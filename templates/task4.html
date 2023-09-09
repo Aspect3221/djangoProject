@@ -4,7 +4,10 @@
 
 {% block content %}
 
-<h1 class="mb-6 text-3xl text-green-800">Cipher</h1>
+    <div class="flex justify-between">
+        <h1 class="mb-6 text-3xl text-green-800">Text encryption app</h1>
+        <a href="/" class="rounded-lg p-2.5 bg-red-400 self-center">Go back</a>
+    </div>
 <div class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-row">
 <form method="post" action="task4">
     {%csrf_token%}
@@ -17,7 +20,7 @@
         <button class="bg-green-800 p-2 mt-5 hover:bg-green-600 rounded-lg text-white" type="submit">Encrypt</button>
             <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Key used to encrypt: {{ key }}</span></p>
         <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">CipherText: {{ cipherText }}</span></p>
-            <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Decrypted Secret message: {{ decryptedMessage }}</span></p>
+            <p class="alert alert-warning mt-3" role="alert"><span style="font-weight:bold">Decrypted Secret message after using key for the cipher text: {{ decryptedMessage }}</span></p>
     </div>
 </form>
 </div>

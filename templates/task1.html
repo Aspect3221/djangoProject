@@ -4,25 +4,32 @@
 
 {% block content %}
 
-<h1 class="mb-6 text-3xl text-green-800">Validate Credit Card</h1>
-<div class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-row">
-<form method="post" action="task1">
-    {%csrf_token%}
-    <div class="mb-6 p-5">
-    <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Validate credit card</label>
-    <input type="text" id="credit_card_number" name="credit_card_number" class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500" placeholder="4231 *******">
-        <button class="bg-green-800 p-2 mt-5 hover:bg-green-600 rounded-lg text-white" type="submit">Submit</button>
-
-{% for message in messages %}
-  {% if 'success' in message.tags %}
-  <p class="alert alert-success" role="alert"><span style="font-weight:bold">{{ message }}</span></p>
-  {% else %}
-  <p class="alert alert-warning" role="alert"><span style="font-weight:bold">{{ message }}</span></p>
-  {% endif %}
-{% endfor %}
+    <div class="flex justify-between">
+        <h1 class="mb-6 text-3xl text-green-800">Validate Credit Card</h1>
+        <a href="/" class="rounded-lg p-2.5 bg-red-400 self-center">Go back</a>
     </div>
-</form>
-</div>
+    <div class=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 flex flex-row">
+        <form method="post" action="task1">
+            {% csrf_token %}
+            <div class="mb-6 p-5">
+                <label for="success" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Validate
+                    credit card</label>
+                <input type="number" id="credit_card_number" name="credit_card_number"
+                       class="bg-green-50 border border-green-500 text-green-900 dark:text-green-400 placeholder-gray-500 dark:placeholder-gray-500 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700 dark:border-green-500"
+                       placeholder="4231 *******">
+                <button class="bg-green-800 p-2 mt-5 hover:bg-green-600 rounded-lg text-white" type="submit">Submit
+                </button>
 
+                {% for message in messages %}
+                    {% if 'success' in message.tags %}
+                        <p class="alert alert-success" role="alert"><span style="font-weight:bold">{{ message }}</span>
+                        </p>
+                    {% else %}
+                        <p class="mt-2" role="alert"><span class="text-red-600 font-bold">{{ message }}</span></p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </form>
+    </div>
 
 {% endblock content %}
