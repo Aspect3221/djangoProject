@@ -42,8 +42,8 @@ def task3(request):
     elif request.method == "POST":
         password = request.POST.get("password")
         if password is not None:
-            passwordHash, result, attackType = passwordCracker(password)
-            return render(request, "task3.html", {'hash': passwordHash, 'result': result, 'attackType': attackType})
+            passwordHash, result, attackType, elapsedTime = passwordCracker(password)
+            return render(request, "task3.html", {'hash': passwordHash, 'result': result, 'attackType': attackType, 'elapsedTime' : elapsedTime})
 
 
 def task4(request):

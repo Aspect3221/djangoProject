@@ -38,6 +38,11 @@
                     <p class="alert alert-warning" role="alert"><span style="font-weight:bold">No attacks worked</span>
                     </p>
                 {% endif %}
+
+                {% if elapsedTime is not None %}
+                    <p class="alert alert-warning" role="alert"><span
+                            style="font-weight:bold">The time taken is: {{ elapsedTime }} seconds</span></p>
+                {% endif %}
             </div>
         </form>
     </div>

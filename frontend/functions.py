@@ -92,6 +92,7 @@ def passwordCracker(input):
     # import library to hash password
     import hashlib
     import itertools
+    import time
 
     # init variables
     foundPassword = ""
@@ -103,6 +104,8 @@ def passwordCracker(input):
     # read dictionary file of common passwords
     with open('common_passwords.txt', 'r') as file:
         commonPasswords = (file.read().splitlines())
+
+    startTime = time.time()
 
     for password in commonPasswords:
         hashedPassword = hashlib.sha256(password.encode('utf-8')).hexdigest()
@@ -122,7 +125,9 @@ def passwordCracker(input):
                 foundPassword = password
                 break
 
-    return hashInput, foundPassword, attackType
+    endTime = time.time()
+    elapsedTime = endTime - startTime
+    return hashInput, foundPassword, attackType, elapsedTime
 
 
 def encrypt(plainMessage, toEncrypt):
