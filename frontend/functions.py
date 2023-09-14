@@ -161,5 +161,5 @@ def decrypt(key, ciphertext):
     decryptedMessage = "".join(chr(value) for value in decryptedInput)
 
     #Extract the plain message from the first part
-    plainMessage = [ord(char) for char in parts[0]]
+    plainMessage = parts[0]
     return decryptedMessage, plainMessage
